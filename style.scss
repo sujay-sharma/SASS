@@ -1,0 +1,100 @@
+@import "variables";
+@import "mixins";
+
+body{
+   background-color: $deepBlue;
+}
+
+// Nested Styles
+#main-nav{
+    background-color: $deepBlue;
+    font-size: $fontsize;
+    width: 100%;
+    ul{
+        width: 100%;
+        @include clearfix; // Use mixin in nested class
+    }
+
+    li{
+        float: left;
+        list-style: none;
+        // Mathematics in scss
+        width: (100% / 6); // Divide whole row by number of elements
+        @include mQ(900px){
+            width: 100%;
+        }
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
+        padding: 15px;
+        display: block;
+        text-align: center;
+        // Add Pseudo Classes - Need to add &
+        &:hover{
+            // Color function in SASS 
+            //https://sass-lang.com/documentation/functions/color
+            background: lighten($deepBlue, 5);
+                        // Lightens deep blue on hover
+        }
+    }
+} // end of main-nav
+
+section h1{
+    font-size: $sectionHeading;
+    color: $deepBlue;
+}
+
+// Apply mixin
+.lead-banner{
+    @include banner;
+    text-align: right;
+}
+
+.lessons-banner{
+    @include banner;
+    li{
+        text-transform: uppercase;
+        font-size: 20px;
+        max-width: 500px;
+        margin: 60px 0;
+    }
+}
+
+#services{
+    margin-bottom: 60px;
+    li{
+        float: left;
+        box-sizing: border-box;
+        text-align: center;
+        width: (100% / 3);
+    }
+
+    img{
+        width: 60%;
+        margin: 20px 20%;
+    }
+
+    a{
+        text-decoration: none;
+        color: $deepBlue;
+        font-weight: bold;
+        &:hover{
+            // Color function
+            color: complement($deepBlue);
+        }
+    }
+
+    ul{
+        @include clearfix;
+    }
+}
+
+#projects li{
+    @include grid(4, 2%); // Passing in values into 
+                          // the mixin
+    img{
+        width: 100%;
+    }
+}
